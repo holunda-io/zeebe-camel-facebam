@@ -44,15 +44,3 @@ The client just wants to
 * writes image to output dir
 
 
-
-
-## Scope
-
-* Deploy zeebe broker to aws 
-* deploy zeebe client workers to aws
-* connect via aws simple notification service
-* run zb-facebam image processing example
-
-1. upload image to bucket
-2. workers are notified to add watermark and change size
-3. image is written to bucket
