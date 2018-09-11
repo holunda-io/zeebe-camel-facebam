@@ -9,17 +9,29 @@ This project relies on two projects that are not yet finally published:
 its best to clone those projects and build/publish to the local maven repo.
 
 
-spring-zeebe: `mvn clean install`
-camel-zeebe: `gradle clean build publishToMavenLocal`
+    # spring-zeebe: 
+    mvn clean install
+    
+    # camel-zeebe: 
+    gradle clean build publishToMavenLocal
 
 
-
-## Banner
-
-banners are created with: http://patorjk.com/software/taag/#p=display&v=3&f=Sub-Zero&t=FaceBam%0A
 
 
 ## Links
 
-* camel-file: http://camel.apache.org/file2.html
-* spring boot with kotlin: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-kotlin.html
+* [Banner Generator](http://patorjk.com/software/taag/#p=display&v=3&f=Sub-Zero&t=FaceBam%0A)
+
+* camel-file: 
+  * http://camel.apache.org/file2.html
+  * http://www.giuseppeurso.eu/en/consuming-files-from-folders-with-apache-camel/
+  * http://fabian-kostadinov.github.io/2016/01/10/reading-from-and-writing-to-files-in-apache-camel/
+* camel typeconverters
+  * http://camel.apache.org/type-converter.html
+* camel base64: 
+  * http://camel.apache.org/base64.html
+* camel spring boot: 
+  * http://camel.apache.org/spring-boot.html
+
+* spring boot with kotlin: 
+  * https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-kotlin.html
