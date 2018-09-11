@@ -4,6 +4,7 @@ import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 
 object Versions {
+  val java = "1.8"
   val kotlin = "1.2.61"
   val dependencyManagement = "1.0.6.RELEASE"
   val springBoot = "2.0.4.RELEASE"
@@ -12,3 +13,5 @@ object Versions {
   val springZeebe = "0.3.0-SNAPSHOT"
   val camelZeebe = "0.0.1-SNAPSHOT"
 }
+
+

@@ -1,4 +1,4 @@
-package io.holunda.zeebe.facebam;
+package io.holunda.zeebe.facebam.broker;
 
 import io.zeebe.spring.broker.EnableZeebeBroker;
 import io.zeebe.spring.client.EnableZeebeClient;

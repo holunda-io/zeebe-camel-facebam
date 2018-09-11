@@ -1,0 +1,18 @@
+facebam:
+  root: /Users/jangalinski/IdeaProjects/holunda/zeebe-camel-facebam
+  client:
+    filesystem:
+      root: ${facebam.root}/client/.filesystem
+      source: ${facebam.client.filesystem.root}/outgoing
+      destination: ${facebam.client.filesystem.root}/incoming
+    cloud-root: ${facebam.root}/cloud/.filesystem
+
+
+spring:
+  application:
+    name: faceBam-client
+
+# this keeps the application+camelContext running
+camel:
+  springboot:
+    mainRunController: true

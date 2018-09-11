@@ -22,4 +22,6 @@ buildNumber.properties
 out/
 build/
 
-.tmp/
+
+# camel
+.filesystem/
