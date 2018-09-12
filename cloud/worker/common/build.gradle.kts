@@ -4,10 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   kotlin("jvm") version Versions.kotlin
   kotlin("plugin.spring") version Versions.kotlin
-  id("org.springframework.boot") version Versions.springBoot
-}
-apply {
-  plugin("io.spring.dependency-management")
+  id ("io.spring.dependency-management") version Versions.dependencyManagement
 }
 
 configure<DependencyManagementExtension> {
