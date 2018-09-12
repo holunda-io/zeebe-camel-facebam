@@ -21,6 +21,7 @@ dependencies {
   compile("io.zeebe.spring:spring-zeebe-broker-starter:${Versions.springZeebe}")
   compile("io.zeebe.spring:spring-zeebe-starter:${Versions.springZeebe}")
   compile("org.apache.camel:camel-spring-boot-starter")
+  compile("org.apache.camel:camel-base64")
   compile("io.zeebe.camel:camel-zeebe-core:${Versions.camelZeebe}")
 }
 

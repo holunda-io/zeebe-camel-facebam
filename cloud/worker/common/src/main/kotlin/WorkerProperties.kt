@@ -15,3 +15,4 @@ data class WorkerProperties(
         assert(work != null, { "work.work not set" })
     }
 }
+
