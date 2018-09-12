@@ -1,11 +1,12 @@
-facebam:
-  thumbnailer:
-    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/thumbnailer/_fs/inbox
-    work: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/thumbnailer/_fs/work
-
 spring:
   application:
     name: thumbnailer-worker
+
+facebam:
+  worker:
+    name: ${spring.application.name}
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/thumbnailer/_fs/inbox
+    work: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/thumbnailer/_fs/work
 
 camel:
   springboot:

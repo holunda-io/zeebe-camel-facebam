@@ -1,6 +1,6 @@
 package io.holunda.zeebe.facebam.worker.watermarker.processor
 
-import io.holunda.zeebe.facebam.worker.watermarker.WatermarkerProperties
+import io.holunda.zeebe.facebam.worker.common.WorkerProperties
 import mu.KLogging
 import org.apache.camel.Exchange
 import org.apache.camel.Processor
@@ -17,7 +17,7 @@ import javax.imageio.ImageIO
 
 
 //@Component
-class WatermarkerProcessor(private val properties: WatermarkerProperties) : Processor {
+class WatermarkerProcessor(private val properties: WorkerProperties) : Processor {
 
   companion object : KLogging()
 

@@ -18,7 +18,6 @@ configure<DependencyManagementExtension> {
 }
 
 dependencies {
-  compile(project(":cloud:worker:facebam-worker-common"))
   compile(kotlin("stdlib-jdk8"))
   compile(kotlin("reflect"))
   compile("org.springframework.boot:spring-boot-starter")

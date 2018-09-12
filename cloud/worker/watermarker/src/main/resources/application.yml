@@ -1,12 +1,12 @@
-facebam:
-  watermarker:
-    fs: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/watermarker/_fs
-    inbox: ${facebam.watermarker.fs}/inbox
-    work: ${facebam.watermarker.fs}/work
-
 spring:
   application:
     name: watermarker-worker
+
+facebam:
+  worker:
+    name: ${spring.application.name}
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/watermarker/_fs/inbox
+    work: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/watermarker/_fs/work
 
 camel:
   springboot:
