@@ -1,12 +1,13 @@
 facebam:
   root: /Users/jangalinski/IdeaProjects/holunda/zeebe-camel-facebam
   client:
-    filesystem:
-      root: ${facebam.root}/client/.filesystem
-      source: ${facebam.client.filesystem.root}/outgoing
-      destination: ${facebam.client.filesystem.root}/incoming
-    cloud-root: ${facebam.root}/cloud/.filesystem
-
+    fs: ${facebam.root}/client/_fs
+    inbox: ${facebam.client.fs}/inbox
+    outbox: ${facebam.client.fs}/outbox
+  cloud:
+    fs: ${facebam.root}/cloud/_fs
+    inbox: ${facebam.cloud.fs}/inbox
+    outbox: ${facebam.cloud.fs}/outbox
 
 spring:
   application:

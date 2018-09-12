@@ -1,6 +1,7 @@
 package io.holunda.zeebe.facebam.client
 
 import mu.KLogging
+import org.apache.camel.LoggingLevel
 import org.apache.camel.builder.RouteBuilder
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -9,8 +10,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 
+
+fun main(args: Array<String>) = runApplication<ClientApplication>(*args).let { Unit }
+
 @SpringBootApplication
-@EnableConfigurationProperties(ClientConfigurationProperties::class)
+@EnableConfigurationProperties(ClientProperties::class)
 class ClientApplication {
 
   companion object : KLogging()
@@ -19,31 +23,28 @@ class ClientApplication {
    * Reads from client directory and copies to cloud inbox
    */
   @Bean
-  fun uploadImage(properties: ClientConfigurationProperties) = object : RouteBuilder() {
+  fun uploadImage(properties: ClientProperties) = object : RouteBuilder() {
     override fun configure() {
-      from("file:${properties.filesystem.source}")
-          .routeId("upload-image-to-cloud")
-          .to("file:${properties.cloudRoot}/foo")
+      from("""file:${properties.client.outbox}?include=.*\.png""")
+          .id("upload-image-to-cloud")
+          .log(LoggingLevel.INFO, "uploading image")
+          .to("""file:${properties.cloud.inbox}""")
     }
   }
 
   @Bean
-  fun onStart(properties: ClientConfigurationProperties) = CommandLineRunner {
+  fun onStart(properties: ClientProperties) = CommandLineRunner {
     logger.info { ".... starting with properties: $properties" }
   }
-
 }
 
-fun main(args: Array<String>) = runApplication<ClientApplication>().let { Unit }
-
-
-@ConfigurationProperties("facebam.client")
-data class ClientConfigurationProperties(
-    val filesystem: Filesystem = Filesystem(),
-    var cloudRoot: String? = null
+@ConfigurationProperties("facebam")
+data class ClientProperties(
+    val client: FS = FS(),
+    val cloud: FS = FS()
 ) {
-  data class Filesystem(
-      var source: String? = null,
-      var destination: String? = null
+  data class FS(
+      var inbox: String? = null,
+      var outbox: String? = null
   )
 }

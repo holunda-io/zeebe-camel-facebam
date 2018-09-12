@@ -20,7 +20,7 @@ its best to clone those projects and build/publish to the local maven repo.
 
 ## Links
 
-* [Banner Generator](http://patorjk.com/software/taag/#p=display&v=3&f=Sub-Zero&t=FaceBam%0A)
+* [Banner Generator](http://patorjk.com/software/taag/#p=display&f=Sub-Zero&t=%20FaceBam%0A%20%20thumb%0A%20%20%20nailer)
 
 * camel-file: 
   * http://camel.apache.org/file2.html
@@ -28,6 +28,8 @@ its best to clone those projects and build/publish to the local maven repo.
   * http://fabian-kostadinov.github.io/2016/01/10/reading-from-and-writing-to-files-in-apache-camel/
 * camel typeconverters
   * http://camel.apache.org/type-converter.html
+* camel json:
+  * http://camel.apache.org/json.html
 * camel base64: 
   * http://camel.apache.org/base64.html
 * camel spring boot: 
@@ -35,3 +37,11 @@ its best to clone those projects and build/publish to the local maven repo.
 
 * spring boot with kotlin: 
   * https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-kotlin.html
+  
+  
+* camel twitter:
+  * http://camel.apache.org/twitter.html
+
+
+* java image processing:
+  * https://www.geeksforgeeks.org/image-processing-java-set-10-watermarking-image/
