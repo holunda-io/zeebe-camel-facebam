@@ -1,9 +1,7 @@
 facebam:
-  root: /Users/jangalinski/IdeaProjects/holunda/zeebe-camel-facebam
   thumbnailer:
-    fs: ${facebam.root}/cloud/worker/thumbnailer/_fs
-    inbox: ${facebam.watermarker.fs}/inbox
-    work: ${facebam.watermarker.fs}/work
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/thumbnailer/_fs/inbox
+    work: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/thumbnailer/_fs/work
 
 spring:
   application:

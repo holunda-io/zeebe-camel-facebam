@@ -25,10 +25,10 @@ class ThumbnailerApplication {
   @Bean
   fun createThumbnailRoute(properties: ThumbnailerProperties) = object: RouteBuilder() {
     override fun configure() {
-      from("file:\${properties.inbox}?include=.*\\.png")
+      from("file:${properties.inbox}?include=.*\\.png")
           .id("create thumbnail")
           .log(LoggingLevel.INFO, "processing image")
-          .to("file:\${properties.work}")
+          .to("file:${properties.work}")
     }
   }
 }

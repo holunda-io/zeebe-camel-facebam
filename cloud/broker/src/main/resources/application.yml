@@ -1,15 +1,12 @@
 facebam:
-  root: /Users/jangalinski/IdeaProjects/holunda/zeebe-camel-facebam
   client:
-    fs: ${facebam.root}/client/_fs
-    inbox: ${facebam.client.fs}/inbox
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/client/_fs/inbox
   cloud:
-    fs: ${facebam.root}/cloud/_fs
-    inbox: ${facebam.cloud.fs}/inbox
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/_fs/inbox
   broker:
-    fs: ${facebam.root}/cloud/broker/_fs
-    inbox: ${facebam.broker.fs}/inbox
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/broker/_fs/inbox
 
 spring:
   application:
     name: broker
+

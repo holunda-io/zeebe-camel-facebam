@@ -15,7 +15,20 @@ its best to clone those projects and build/publish to the local maven repo.
     # camel-zeebe: 
     gradle clean build publishToMavenLocal
 
+## Run
 
+The application.yaml-configuration paths for in/outbox depend on the environment variable
+`ZEEBE_CAMEL_FACEBAM_HOME` pointing to the project root.
+
+
+WARNING: I didn't get .env with run dashbord running.
+So currently, in each run dashboard configuration add an `Override Parameter`
+* ZEEBE_CAMEL_FACEBAM_HOME | <PATH_TO_PROJECT_ROOT>
+
+~~_I found that it's easiest to achieve when you have IDEA with the [.env-plugin](https://plugins.jetbrains.com/plugin/7861-env-file) 
+ installed and just put `ZEEBE_CAMEL_FACEBAM_HOME=/home/galinskij/IdeaProjects/holisticon/zeebe-camel-facebam` in `<PROJECT_ROOT>/.env`
+ You can use the `.env.tmpl` provided, just copy and replace the path_.
+ _If you are not using IDEA+env, make sure the HOME variable is set on system properties._~~
 
 
 ## Links

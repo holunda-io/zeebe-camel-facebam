@@ -39,7 +39,6 @@ public class BrokerConfigurationProperties {
     return client;
   }
 
-
   public FS getCloud() {
     return cloud;
   }

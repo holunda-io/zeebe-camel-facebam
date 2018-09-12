@@ -25,7 +25,7 @@ class ClientApplication {
   @Bean
   fun uploadImage(properties: ClientProperties) = object : RouteBuilder() {
     override fun configure() {
-      from("""file:${properties.client.outbox}?include=.*\.png""")
+      from("""file:${properties.client.outbox}?include=.*\.png$""")
           .id("upload-image-to-cloud")
           .log(LoggingLevel.INFO, "uploading image")
           .to("""file:${properties.cloud.inbox}""")
