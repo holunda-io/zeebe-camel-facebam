@@ -30,6 +30,7 @@ class ThumbnailerApplication {
           .log(LoggingLevel.INFO, "processing image")
           .to("file:${properties.work}")
     }
+
   }
 }
 
