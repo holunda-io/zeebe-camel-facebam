@@ -19,7 +19,9 @@ configure<DependencyManagementExtension> {
 
 dependencies {
   compile(project(":cloud:worker:facebam-worker-common"))
-  compile("io.zeebe.camel:camel-zeebe-api:${Versions.camelZeebe}")
+
+  compile(project(":lib:camel-zeebe:camel-zeebe-api"))
+
   compile(kotlin("stdlib-jdk8"))
   compile(kotlin("reflect"))
   compile("org.springframework.boot:spring-boot-starter")

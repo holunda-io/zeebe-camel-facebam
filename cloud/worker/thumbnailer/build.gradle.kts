@@ -19,6 +19,7 @@ configure<DependencyManagementExtension> {
 }
 
 dependencies {
+  compile(project(":lib:camel-zeebe:camel-zeebe-api"))
   compile(project(":cloud:worker:facebam-worker-common"))
   //compile("")
 

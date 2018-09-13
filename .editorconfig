@@ -15,6 +15,10 @@ indent_size = 2
 [*.kts]
 indent_size = 2
 
+
+[*.sh]
+indent_size = 2
+
 [*.xml]
 indent_size = 2
 

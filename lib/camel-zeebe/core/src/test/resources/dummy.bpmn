@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Zeebe Modeler" exporterVersion="0.1.0">
+  <bpmn:process id="process_dummy" name="Dummy Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0tlqj13</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="task_doSomething" name="Do something">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="doSomething" />
+        <zeebe:ioMapping>
+          <zeebe:input source="$.foo" target="$.bar" />
+          <zeebe:output source="$.bar" target="$.foo" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0tlqj13</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_11kto6k</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0tlqj13" sourceRef="StartEvent_1" targetRef="task_doSomething" />
+    <bpmn:endEvent id="EndEvent_03k3rs6">
+      <bpmn:incoming>SequenceFlow_11kto6k</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_11kto6k" sourceRef="task_doSomething" targetRef="EndEvent_03k3rs6" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_dummy">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="196" y="206" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="169" y="242" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_09l6seu_di" bpmnElement="task_doSomething">
+        <dc:Bounds x="282" y="184" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0tlqj13_di" bpmnElement="SequenceFlow_0tlqj13">
+        <di:waypoint xsi:type="dc:Point" x="232" y="224" />
+        <di:waypoint xsi:type="dc:Point" x="282" y="224" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="257" y="202.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_03k3rs6_di" bpmnElement="EndEvent_03k3rs6">
+        <dc:Bounds x="426" y="206" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="444" y="245" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_11kto6k_di" bpmnElement="SequenceFlow_11kto6k">
+        <di:waypoint xsi:type="dc:Point" x="382" y="224" />
+        <di:waypoint xsi:type="dc:Point" x="426" y="224" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="404" y="202.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
