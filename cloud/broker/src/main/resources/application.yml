@@ -13,4 +13,5 @@ spring:
 logging:
   level:
     io.zeebe.broker.clustering: WARN
+    io.zeebe.logstreams: WARN
     io.zeebe.raft: WARN

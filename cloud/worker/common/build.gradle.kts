@@ -15,8 +15,6 @@ configure<DependencyManagementExtension> {
 }
 
 dependencies {
-  compile(kotlin("stdlib-jdk8"))
-  compile(kotlin("reflect"))
   compile("org.springframework.boot:spring-boot-starter")
   compile("org.apache.camel:camel-spring-boot-starter")
   compile("org.imgscalr:imgscalr-lib:4.2")

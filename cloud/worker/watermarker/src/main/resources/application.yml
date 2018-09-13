@@ -3,10 +3,12 @@ spring:
     name: watermarker-worker
 
 facebam:
+  name: ${spring.application.name}
   worker:
-    name: ${spring.application.name}
     inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/watermarker/_fs/inbox
     work: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/worker/watermarker/_fs/work
+  broker:
+    inbox: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/broker/_fs/inbox
 
 camel:
   springboot:

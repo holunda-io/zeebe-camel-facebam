@@ -2,6 +2,7 @@ package io.holunda.zeebe.facebam.worker.thumbnailer
 
 import io.holunda.zeebe.facebam.worker.common.WorkerProperties
 import mu.KLogging
+import org.apache.camel.CamelContext
 import org.apache.camel.LoggingLevel
 import org.apache.camel.builder.RouteBuilder
 import org.springframework.boot.CommandLineRunner
@@ -14,7 +15,10 @@ fun main(args: Array<String>) = runApplication<ThumbnailerApplication>(*args).le
 
 @SpringBootApplication
 @EnableConfigurationProperties(WorkerProperties::class)
-class ThumbnailerApplication {
+class ThumbnailerApplication(
+  private val camel: CamelContext,
+  private val properties: WorkerProperties
+) {
   companion object : KLogging()
 
   @Bean
@@ -23,7 +27,10 @@ class ThumbnailerApplication {
   }
 
   @Bean
-  fun createThumbnailRoute(properties: WorkerProperties) = object: RouteBuilder() {
+  fun registerWorkerGateway() = null
+
+  @Bean
+  fun createThumbnailRoute() = object: RouteBuilder() {
     override fun configure() {
       from("file:${properties.inbox}?include=.*\\.png")
           .id("create thumbnail")

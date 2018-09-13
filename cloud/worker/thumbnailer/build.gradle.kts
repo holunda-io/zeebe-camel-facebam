@@ -20,13 +20,12 @@ configure<DependencyManagementExtension> {
 
 dependencies {
   compile(project(":cloud:worker:facebam-worker-common"))
+  //compile("")
+
+
   compile(kotlin("stdlib-jdk8"))
   compile(kotlin("reflect"))
-  compile("org.springframework.boot:spring-boot-starter")
-  compile("org.apache.camel:camel-spring-boot-starter")
-  compile("org.imgscalr:imgscalr-lib:4.2")
 
-  compile("io.github.microutils:kotlin-logging:1.6.10")
 }
 
 

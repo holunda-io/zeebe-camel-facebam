@@ -11,7 +11,7 @@ object Versions {
   val zeebe = "0.11.0"
   val camel = "2.22.0"
   val springZeebe = "0.3.0-SNAPSHOT"
-  val camelZeebe = "0.0.2-SNAPSHOT"
+  val camelZeebe = "0.0.3-SNAPSHOT"
 }
 
 

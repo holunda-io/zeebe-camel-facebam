@@ -2,9 +2,11 @@ package io.holunda.zeebe.facebam.broker;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.holunda.zeebe.facebam.broker.config.BrokerConfigurationProperties;
+import io.zeebe.camel.api.command.RegisterJobWorkerCommand;
 import io.zeebe.camel.api.command.StartProcessCommand;
 import io.zeebe.camel.endpoint.ProcessDeployEndpoint;
 import io.zeebe.camel.endpoint.ProcessStartEndpoint;
+import io.zeebe.camel.endpoint.WorkerRegisterEndpoint;
 import io.zeebe.camel.processor.FromFileToProcessDeployCommand;
 import io.zeebe.client.ZeebeClient;
 import io.zeebe.spring.broker.EnableZeebeBroker;
@@ -20,6 +22,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.file.GenericFileMessage;
+import org.apache.camel.model.dataformat.JsonLibrary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +74,18 @@ public class BrokerApplication {
   }
 
   @Bean
+  RouteBuilder registerWorker() {
+    return new RouteBuilder() {
+      @Override
+      public void configure() throws Exception {
+        from("file:" + properties.getBroker().getInbox() + "?initialDelay=10000")
+          .unmarshal().json(JsonLibrary.Jackson, RegisterJobWorkerCommand.class)
+          .to(WorkerRegisterEndpoint.ENDPOINT);
+      }
+    };
+  }
+
+  @Bean
   RouteBuilder startProcess() {
     return new RouteBuilder() {
 
@@ -84,7 +99,7 @@ public class BrokerApplication {
 
             final Map<String,Object> payload = new HashMap<>();
             payload.put("fileName", msg.getGenericFile().getFileNameOnly());
-            payload.put("image", imageMime);
+            payload.put("image", msg.getGenericFile().getAbsoluteFilePath());
 
             String p = new ObjectMapper().writeValueAsString(payload);
 

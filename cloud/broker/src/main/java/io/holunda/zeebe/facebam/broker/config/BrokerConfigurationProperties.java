@@ -15,6 +15,8 @@ public class BrokerConfigurationProperties {
   @NestedConfigurationProperty
   private final FS broker = new FS();
 
+  private boolean keepBpmn;
+
   public static class FS {
 
     private String inbox;
@@ -47,10 +49,19 @@ public class BrokerConfigurationProperties {
     return broker;
   }
 
+  public boolean isKeepBpmn() {
+    return keepBpmn;
+  }
+
+  public void setKeepBpmn(boolean keepBpmn) {
+    this.keepBpmn = keepBpmn;
+  }
+
   @Override
   public String toString() {
     return "BrokerConfigurationProperties{" +
-        "client=" + client +
+      "keepBpmn=" + keepBpmn +
+        ", client=" + client +
         ", cloud=" + cloud +
         ", broker=" + broker +
         '}';

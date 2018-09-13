@@ -11,3 +11,5 @@ arrayOf("common", "watermarker", "thumbnailer").forEach {
     include("cloud:worker:$it")
     findProject(":cloud:worker:$it")?.name = "facebam-worker-$it"
 }
+
+include("lib")

@@ -3,16 +3,17 @@ package io.holunda.zeebe.facebam.worker.common
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 
-@ConfigurationProperties("facebam.worker")
+@ConfigurationProperties("facebam")
 data class WorkerProperties(
         var name: String? = null,
-        var inbox: String? = null,
-        var work: String? = null
+        var worker: FS? = null,
+        var broker: FS? = null
 ) {
-    init {
-        assert(name != null, { "worker.name not set" })
-        assert(inbox != null, { "worker.inbox not set" })
-        assert(work != null, { "work.work not set" })
-    }
+
+  data class FS(
+    var inbox:String? = null,
+    var outbox:String? = null,
+    var work:String? = null
+  )
 }
 
