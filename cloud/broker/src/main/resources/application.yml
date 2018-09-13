@@ -10,3 +10,7 @@ spring:
   application:
     name: broker
 
+logging:
+  level:
+    io.zeebe.broker.clustering: WARN
+    io.zeebe.raft: WARN
