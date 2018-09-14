@@ -7,6 +7,13 @@ facebam:
     fs: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/_fs
     inbox: ${facebam.cloud.fs}/inbox
     outbox: ${facebam.cloud.fs}/outbox
+  google-mail:
+    clientId: ${ZEEBE_CAMEL_GMAIL_CLIENT_ID}
+    clientSecret: ${ZEEBE_CAMEL_GMAIL_CLIENT_SECRET}
+    accessToken: ${ZEEBE_CAMEL_GMAIL_ACCESS_TOKEN}
+    refreshToken: ${ZEEBE_CAMEL_GMAIL_REFRESH_TOKEN}
+    userId: ${ZEEBE_CAMEL_GMAIL_USER_ID}
+
 
 spring:
   application:
