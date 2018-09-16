@@ -36,13 +36,16 @@ class ProcessStartEndpoint(context: ZeebeComponentContext) : ZeebeProducerOnlyEn
     override fun process(exchange: Exchange) {
       val cmd = exchange.getIn().getMandatoryBody(StartProcessCommand::class.java)
 
-      val payload = objectMapper.writeValueAsString(cmd.payload)
-
-      val event = context.workflowClient
+      val builder = context.workflowClient
         .newCreateInstanceCommand()
         .bpmnProcessId(cmd.bpmnProcessId)
         .latestVersion()
-        .payload(payload)
+
+      if (cmd.payload != null) {
+        builder.payload(cmd.payload)
+      }
+
+      val event = builder
         .send()
         .join()
 

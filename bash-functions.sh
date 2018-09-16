@@ -5,21 +5,14 @@ function zcf.deploy() {
 }
 
 function zcf.start.png() {
-  cp docs/images/kermit.png _demo/cloud/_application/orchestrator
+  cp docs/images/kermit.png _demo/cloud/inbox
 }
 function zcf.start.jpg() {
-  cp docs/images/IMG_0612.jpg _demo/cloud/_application/orchestrator
+  cp docs/images/IMG_0612.jpg _demo/cloud/inbox
 }
 
 function zcf.list() {
-  declare -a demo_dirs=("client/inbox" "client/outbox" "cloud/inbox" "cloud/outbox"  "cloud/_application/_work"  "cloud/_application/orchestrator" "cloud/_application/watermarker" "cloud/_application/thumbnailer")
-  for d in "${demo_dirs[@]}"
-
-  #for d in `find _demo ! -name ".gitignore" ! -name ".DS_Store"`
-  do
-    echo "--------- $d"
-    find "_demo/$d" -type f ! -name ".gitignore" ! -name ".DS_Store"
-  done
+  tree -a -I ".gitignore|.DS_Store" _demo/
 }
 
 function zcf.clean() {
@@ -27,6 +20,7 @@ function zcf.clean() {
 
   find _demo -type f -name "*.png" -print -delete
   find _demo -type f -name "*.jpg" -print -delete
+  find _demo -type f -name "*.bpmn" -print -delete
   find _demo -type f -name "*.job" -print -delete
   find _demo -type f -name "*.complete" -print -delete
   find _demo -type f -name "*.register" -print -delete

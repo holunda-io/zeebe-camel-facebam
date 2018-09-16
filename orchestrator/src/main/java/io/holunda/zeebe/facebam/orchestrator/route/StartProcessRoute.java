@@ -36,9 +36,13 @@ public class StartProcessRoute extends ZeebeRoute {
         originalImage.put("name", msg.getGenericFile().getFileName());
         originalImage.put("directory", properties.getCloud().getWork());
 
-        String payload = objectMapper.writeValueAsString(singletonMap("originalImage", originalImage).toString());
-
-        StartProcessCommand cmd = new StartProcessCommand(PROCESS_ID, payload);
+        StartProcessCommand cmd = new StartProcessCommand(
+          PROCESS_ID,
+          objectMapper.writeValueAsString(
+            singletonMap(
+              "originalImage", originalImage)
+          )
+        );
 
         exchange.getIn().setBody(cmd);
       }).id("create-start-command")

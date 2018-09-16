@@ -5,6 +5,8 @@ import static io.holunda.zeebe.facebam.orchestrator.route.ZeebeRoute.Suffix.png;
 import static java.util.Objects.requireNonNull;
 
 import io.holunda.zeebe.facebam.orchestrator.config.OrchestratorConfigurationProperties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.camel.builder.RouteBuilder;
 
 public abstract class ZeebeRoute extends RouteBuilder {
@@ -14,7 +16,11 @@ public abstract class ZeebeRoute extends RouteBuilder {
     png,
     jpg,
     register,
-    complete
+    complete;
+
+    public static String antInclude(Suffix... suffixes) {
+      return "antInclude=" + Stream.of(suffixes).map(s -> "*." + s).collect(Collectors.joining(","));
+    }
   }
 
   protected final OrchestratorConfigurationProperties properties;
@@ -25,11 +31,7 @@ public abstract class ZeebeRoute extends RouteBuilder {
 
   protected String imageFromCloudInbox() {
     return "file:" + properties.getCloud().getInbox()
-      + "?include=.*\\.["
-      + png
-      + "|"
-      + jpg
-      + "]$";
+      + "?include=.*\\.jpg$";
   }
 
   protected String inboxWithSuffix(Suffix suffix) {

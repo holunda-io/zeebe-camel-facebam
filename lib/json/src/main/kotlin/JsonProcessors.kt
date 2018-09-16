@@ -8,26 +8,13 @@ import org.apache.camel.model.RouteDefinition
 import java.io.File
 import kotlin.reflect.KClass
 
-class JsonProcessors {
-
-  companion object {
-    @JvmStatic
-    val objectMapper = jacksonObjectMapper()
-      .enable(SerializationFeature.INDENT_OUTPUT)!!
-  }
-
-
-
-}
-
-
-
-
+val objectMapper = jacksonObjectMapper()
+  .enable(SerializationFeature.INDENT_OUTPUT)!!
 
 fun <T : Any> RouteDefinition.fileContentToObject(type: KClass<T>) = this.process {
   val file = it.getMessage(GenericFileMessage::class.java)
   val content = File(file.genericFile.absoluteFilePath).readText()
-  val bean = JsonProcessors.objectMapper.readValue(content, type.java)
+  val bean = objectMapper.readValue(content, type.java)
   it.`in`.setBody(bean, type.java)
 }
 
@@ -46,7 +33,7 @@ fun <T : Any> RouteBuilder.fromJsonFile(
 fun <T : Any> RouteDefinition.toJsonFile(type: KClass<T>, directory: String, fileName: String) = this
   .process {
     val cmd = it.`in`.getMandatoryBody(type.java)
-    val json = JsonProcessors.objectMapper.writeValueAsString(cmd)
+    val json = objectMapper.writeValueAsString(cmd)
     it.`in`.body = json
   }
   .to("file:${directory}?fileName=${fileName}")!!

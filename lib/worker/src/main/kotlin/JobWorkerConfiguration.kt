@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean
 class JobWorkerConfiguration {
 
   @Bean
-  fun objectMapper() = io.zeebe.camel.lib.json.JsonProcessors.objectMapper
+  fun objectMapper() = io.zeebe.camel.lib.json.objectMapper
 
   @Bean
   fun registerJobWorkerGateway(camel: CamelContext) = camel.zeebeRegisterJobWorkerGateway()

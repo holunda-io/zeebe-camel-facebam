@@ -62,8 +62,8 @@ or a
 
 # An Exchange
 
-* represents data in a **route**
-* encloses **Message**s (In (and (Out))
+* represents data in a **Route**
+* encloses **Message**s (In *and Out*)
 * Messages have a Header (Map) and a Body
 
 --
