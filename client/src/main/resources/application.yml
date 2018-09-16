@@ -1,16 +1,25 @@
+spring:
+  application:
+    name: faceBam-client
+
 facebam:
   client:
     root: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo/client
     inbox: ${facebam.client.root}/inbox
     outbox: ${facebam.client.root}/outbox
+
   cloud:
     root: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo/cloud
     inbox: ${facebam.cloud.root}/inbox
     outbox: ${facebam.cloud.root}/outbox
 
-spring:
-  application:
-    name: faceBam-client
+  google-mail:
+    clientId: ${ZEEBE_CAMEL_GMAIL_CLIENT_ID}
+    clientSecret: ${ZEEBE_CAMEL_GMAIL_CLIENT_SECRET}
+    accessToken: ${ZEEBE_CAMEL_GMAIL_ACCESS_TOKEN}
+    refreshToken: ${ZEEBE_CAMEL_GMAIL_REFRESH_TOKEN}
+    userId: ${ZEEBE_CAMEL_GMAIL_USER_ID}
+
 
 # this keeps the application+camelContext running
 camel:

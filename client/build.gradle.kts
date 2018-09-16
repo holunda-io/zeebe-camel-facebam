@@ -21,6 +21,8 @@ dependencies {
   compile(kotlin("reflect"))
   compile("org.springframework.boot:spring-boot-starter")
   compile("org.apache.camel:camel-spring-boot-starter")
+  compile("org.apache.camel:camel-google-mail")
+  compile("org.apache.camel:camel-base64")
 
   compile("io.github.microutils:kotlin-logging:1.6.10")
 }
