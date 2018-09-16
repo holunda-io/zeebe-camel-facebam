@@ -1,5 +1,6 @@
 package io.holunda.zeebe.facebam.orchestrator.route;
 
+import static io.holunda.zeebe.facebam.orchestrator.route.ZeebeRoute.Suffix.jpg;
 import static io.holunda.zeebe.facebam.orchestrator.route.ZeebeRoute.Suffix.png;
 import static java.util.Objects.requireNonNull;
 
@@ -11,6 +12,7 @@ public abstract class ZeebeRoute extends RouteBuilder {
   public enum Suffix {
     bpmn,
     png,
+    jpg,
     register,
     complete
   }
@@ -22,9 +24,13 @@ public abstract class ZeebeRoute extends RouteBuilder {
   }
 
   protected String imageFromCloudInbox() {
-    return "file:" + properties.getCloud().getInbox() + "?include=.*\\." + png.name() +  "$";
+    return "file:" + properties.getCloud().getInbox()
+      + "?include=.*\\.["
+      + png
+      + "|"
+      + jpg
+      + "]$";
   }
-
 
   protected String inboxWithSuffix(Suffix suffix) {
     requireNonNull(suffix);

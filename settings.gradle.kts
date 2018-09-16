@@ -6,6 +6,8 @@ findProject(":client")?.name = "facebam-client"
 include("orchestrator")
 findProject(":orchestrator")?.name = "facebam-cloud-orchestrator"
 
+include("worker")
+findProject(":worker")?.name = "facebam-cloud-worker"
 
 arrayOf("watermarker", "thumbnailer").forEach {
   include("worker:$it")
@@ -17,8 +19,6 @@ arrayOf("json", "worker").forEach {
   include("lib:$it")
   findProject(":lib:$it")?.name = "facebam-lib-$it"
 }
-
-include("lib:json")
 
 include("lib:camel-zeebe")
 arrayOf("api", "core").forEach {
