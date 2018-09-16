@@ -20,3 +20,5 @@
 ---
 
 # Thank you 
+
+![simonz](images/thanks-simonz.png)  <!-- .element: style="height:200px" -->  ![simons](images/thanks-simons.png) <!-- .element: style="height:200px" -->  
