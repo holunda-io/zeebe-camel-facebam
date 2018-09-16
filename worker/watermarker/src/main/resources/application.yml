@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: watermarker-worker
+
+facebam:
+  name: ${spring.application.name}
+  jobType: "watermark"
+  demo: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo
+  worker:
+    inbox: ${facebam.demo}/cloud/_application/watermarker
+  broker:
+    inbox: ${facebam.demo}/cloud/_application/orchestrator
+
+camel:
+  springboot:
+    mainRunController: true

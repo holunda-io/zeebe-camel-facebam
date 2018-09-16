@@ -1,12 +1,12 @@
 facebam:
   client:
-    fs: ${ZEEBE_CAMEL_FACEBAM_HOME}/client/_fs
-    inbox: ${facebam.client.fs}/inbox
-    outbox: ${facebam.client.fs}/outbox
+    root: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo/client
+    inbox: ${facebam.client.root}/inbox
+    outbox: ${facebam.client.root}/outbox
   cloud:
-    fs: ${ZEEBE_CAMEL_FACEBAM_HOME}/cloud/_fs
-    inbox: ${facebam.cloud.fs}/inbox
-    outbox: ${facebam.cloud.fs}/outbox
+    root: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo/cloud
+    inbox: ${facebam.cloud.root}/inbox
+    outbox: ${facebam.cloud.root}/outbox
 
 spring:
   application:

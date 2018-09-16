@@ -24,9 +24,9 @@ data class DeployProcessCommand(
 }
 
 
-data class StartProcessCommand<T>(
+data class StartProcessCommand(
   val bpmnProcessId: String,
-  val payload: T
+  val payload: Json? = null
 )
 
 data class CompleteJobCommand(

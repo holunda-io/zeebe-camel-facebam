@@ -7,6 +7,10 @@
     <bpmn:serviceTask id="ServiceTask_0u3peid" name="Add Watermark to Photo">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="watermark" />
+        <zeebe:ioMapping>
+          <zeebe:input source="$.originalImage" target="$.image" />
+          <zeebe:output source="$.image" target="$.watermarkedImage" />
+        </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1wjc0il</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0pm8rh2</bpmn:outgoing>
@@ -15,6 +19,10 @@
     <bpmn:serviceTask id="ServiceTask_1320rl9" name="Create Thumbnail of Image">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="thumbnail" />
+        <zeebe:ioMapping>
+          <zeebe:input source="$.watermarkedImage" target="$.image" />
+          <zeebe:output source="$.image" target="$.thumbnailImage" />
+        </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0pm8rh2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1up7ksx</bpmn:outgoing>

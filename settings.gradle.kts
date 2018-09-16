@@ -3,17 +3,17 @@ rootProject.name = "zeebe-camel-facebam"
 include("client")
 findProject(":client")?.name = "facebam-client"
 
-include("cloud:broker")
-findProject(":cloud:broker")?.name = "facebam-broker"
+include("orchestrator")
+findProject(":orchestrator")?.name = "facebam-cloud-orchestrator"
 
 
-arrayOf("common", "watermarker", "thumbnailer").forEach {
-  include("cloud:worker:$it")
-  findProject(":cloud:worker:$it")?.name = "facebam-worker-$it"
+arrayOf("watermarker", "thumbnailer").forEach {
+  include("worker:$it")
+  findProject(":worker:$it")?.name = "facebam-cloud-$it"
 }
 
 include("lib")
-arrayOf("json").forEach {
+arrayOf("json", "worker").forEach {
   include("lib:$it")
   findProject(":lib:$it")?.name = "facebam-lib-$it"
 }

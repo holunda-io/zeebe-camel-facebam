@@ -19,7 +19,7 @@ interface StartProcessGateway {
     companion object {
         const val ENDPOINT = "direct:startProcess"
     }
-  fun send(command: StartProcessCommand<*>)
+  fun send(command: StartProcessCommand)
 }
 
 interface RegisterJobWorkerGateway {

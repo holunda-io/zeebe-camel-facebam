@@ -1,0 +1,21 @@
+facebam:
+  demo: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo
+  client:
+    inbox: ${facebam.demo}/client/inbox
+  cloud:
+    inbox: ${facebam.demo}/cloud/inbox
+    outbox: ${facebam.demo}/cloud/outbox
+    work: ${facebam.demo}/cloud/_application/_work
+  broker:
+    inbox: ${facebam.demo}/cloud/_application/orchestrator
+
+spring:
+  application:
+    name: broker
+
+logging:
+  level:
+    io.zeebe.broker.clustering: WARN
+    io.zeebe.logstreams: WARN
+    io.zeebe.raft: WARN
+    org.springframework.context.support.PostProcessorRegistrationDelegate: WARN

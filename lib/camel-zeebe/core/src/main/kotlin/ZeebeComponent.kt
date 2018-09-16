@@ -1,12 +1,9 @@
 package io.zeebe.camel
 
-import io.zeebe.camel.endpoint.JobCompleteEndpoint
-import io.zeebe.camel.endpoint.WorkerRegisterEndpoint
-import io.zeebe.camel.endpoint.ProcessDeployEndpoint
-import io.zeebe.camel.endpoint.ProcessStartEndpoint
-import io.zeebe.camel.endpoint.JobSubscribeEndpoint
+import io.zeebe.camel.endpoint.*
 import io.zeebe.client.ZeebeClient
 import io.zeebe.client.api.clients.JobClient
+import io.zeebe.client.api.clients.TopicClient
 import io.zeebe.client.api.clients.WorkflowClient
 import io.zeebe.client.api.events.JobEvent
 import io.zeebe.client.impl.ZeebeClientImpl
@@ -34,6 +31,7 @@ open class ZeebeComponent(private val clientSupplier: Supplier<ZeebeClient>) : D
         JobSubscribeEndpoint.REMAINING -> JobSubscribeEndpoint(context)
         ProcessStartEndpoint.REMAINING -> ProcessStartEndpoint(context)
         WorkerRegisterEndpoint.REMAINING -> WorkerRegisterEndpoint(context)
+      TopicMonitorEndpoint.REMAINING -> TopicMonitorEndpoint(context)
 
         else -> throw IllegalArgumentException("unkown: ${context.remaining}")
     }
@@ -62,12 +60,16 @@ data class ZeebeComponentContext(
         command = parts.component2()
     }
 
+    val topicClient: TopicClient by lazy {
+        clientSupplier.get().topicClient()
+    }
+
     val workflowClient: WorkflowClient by lazy {
-        clientSupplier.get().topicClient().workflowClient()
+        topicClient.workflowClient()
     }
 
     val jobClient: JobClient by lazy {
-        clientSupplier.get().topicClient().jobClient()
+        topicClient.jobClient()
     }
 
     val objectMapper: ZeebeObjectMapperImpl by lazy {

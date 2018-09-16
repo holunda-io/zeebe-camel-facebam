@@ -14,6 +14,10 @@ its best to clone those projects and build/publish to the local maven repo.
     
     # camel-zeebe: 
     gradle clean build publishToMavenLocal
+    
+Update: to simplify development, the camel-zeebe project with integrated in this build 
+at lib/camel-zeebe. It will be moved to a separate project once everything works.
+
 
 ## Run
 
@@ -30,6 +34,22 @@ So currently, in each run dashboard configuration add an `Override Parameter`
  You can use the `.env.tmpl` provided, just copy and replace the path_.
  _If you are not using IDEA+env, make sure the HOME variable is set on system properties._~~
 
+### Simple Monitor
+
+It's advisable to have the zeebe-simple-monitor running to check what's going
+on on the broker itself.
+
+Todo so, check out the project from https://github.com/zeebe-io/zeebe-simple-monitor
+and follow the instructions:
+
+* make sure to have a local mongodb instance running in default mode (on OSX I did `brew install mongodb` and `mongod --dbpath ....`)
+* open the browser to [localhost:8080](http://localhost:8080) and connect
+
+### Google Mail
+
+To run the "receive images from gmail" extension, you will need a gmail account and an
+OAuth token.
+Follow the description on [camel-googlemail](http://camel.apache.org/googlemail.html) 
 
 ## Links
 

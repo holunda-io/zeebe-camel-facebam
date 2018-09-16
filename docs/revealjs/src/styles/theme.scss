@@ -1,0 +1,255 @@
+/**
+ * Holisticon theme for reveal.js.
+ *
+ */
+
+// Default mixins and settings -----------------
+@import "../../node_modules/reveal.js/css/theme/template/mixins";
+@import "../../node_modules/reveal.js/css/theme/template/settings";
+@import "brand";
+// ---------------------------------------------
+
+
+@import "compass/css3/font-face";
+@include font-face("PT Sans", inline-font-files("../fonts/PT_Sans.woff"), "", normal, normal);
+@include font-face("PT Sans", inline-font-files("../fonts/PT_Sans_Bold.woff"), "", bold, normal);
+
+// Override theme settings ---------------------
+
+$mainFont: 'Calibri','PT Sans','Open Sans', sans-serif;
+$mainColor: $holisticonGrey;
+$headingFont: 'PT Sans', 'Open Sans', sans-serif;
+$headingColor: $holisticonRed;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #fff;
+//$linkColor: lighten( $holisticonBlue, 20%);
+$linkColor: $holisticonBlue;
+$linkColorHover: lighten( $linkColor, 10% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.5);
+
+
+// See ../../node_modules/reveal.js/css/theme/template/settings.scss for the full list.
+// Theme template ------------------------------
+@import "../../node_modules/reveal.js/css/theme/template/theme";
+// ---------------------------------------------
+
+@import "highlight";
+
+// See ../../node_modules/reveal.js/css/theme/README.md
+// for further explanations on how reveal.js themes work.
+
+
+
+
+.img-top div.slide-background.present {
+    background-position: top;
+}
+.img-left div.slide-background.present {
+    background-position: left;
+}
+.img-right div.slide-background.present {
+    background-position: right;
+}
+.img-bottom div.slide-background.present {
+    background-position: bottom;
+}
+.img-full .reveal blockquote {
+    background-color: rgba($holisticonBlockquoteBackground, 0.8);
+}
+
+
+.reveal {
+
+    .controls {
+        width: 3em;
+        height: 3em;
+        zoom: 0.5 !important;
+    }
+
+    section img {
+        border: 0 !important;
+        box-shadow: 0 0 0!important;
+    }
+
+
+    h1 {
+        font-size: 150%;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: none;
+    }
+
+    h2 {
+        font-size: inherit;
+        font-weight: bold;
+    }
+
+    ul ul {
+        list-style: none;
+        padding:0;
+        margin:0;
+        font-size: 75%;
+    }
+
+    ul {
+        list-style: none;
+        padding:0;
+        //margin:0;
+        //display: block;
+    }
+
+    ul li {
+        padding-left: 1ex;
+        text-indent: -1em;
+    }
+
+    ul li:not(:empty):before {
+        content: "■";
+        padding-right: 1ex;
+        color: $holisticonRed;
+    }
+
+    ul ul li:not(:empty):before {
+        content: "□";
+        color: $holisticonGrey;
+    }
+
+    code {
+        font-family: monospace;
+        font-size: 0.99em;
+    }
+
+    blockquote {
+        font-style: italic;
+        font-size: 0.8em;
+        text-align: left;
+        width: auto;
+        display: inline-block;
+        padding-top: 0.3em;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+        color: $holisticonBlockquoteGrey;
+        background-color: $holisticonBlockquoteBackground;
+    }
+
+    pre {
+        box-shadow: none;
+        background-color: $holisticonBlockquoteBackground;
+        padding: 0;
+        width: fit-content;
+        line-height: 0.95em;
+    }
+    pre code {
+        padding: 10px 15px 15px 15px;
+    }
+
+    table {
+        margin: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    table th,
+    table td {
+        padding: 0.2em 0.5em 0.2em 0.5em;
+        border-bottom: 1px solid;
+    }
+
+    table th {
+        text-align: center;
+    }
+    table td[align="right"] {
+        text-align: right;
+    }
+
+    table td[align="center"] {
+        text-align: center;
+    }
+
+    .controls div {
+        opacity: 0.1;
+    }
+
+    .slide-number {
+        color: $holisticonGrey;
+        font-size: 0.8em;
+        right: 120px;
+    }
+
+    .pause-overlay {
+        background-color: $backgroundColor;
+    }
+
+    .slides {
+
+        section.title p {
+            color: $holisticonLighterGrey;
+        }
+
+        table {
+            border-color: $holisticonGrey;
+        }
+
+        section.title {
+            background-image: inline-image("../images/brand/holisticon-logo-standard.svg");
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-size: 40%;
+        }
+
+
+        section {
+            // Move the whole slide a bit to the top
+            margin-top: -0.6em;
+        }
+
+        section.title h1 {
+            margin-top: 4em;
+            color: $holisticonLighterGrey;
+        }
+
+    }
+}
+
+.checklist {
+
+    li:before {
+        content: "▢";
+    }
+}
+
+footer {
+    left: 20px;
+    bottom: 20px;
+    position: absolute;
+    display: block;
+    width: 240px;
+
+}
+
+footer .holisticon-logo {
+    height: 2rem;
+    opacity: 0.6;
+}
+
+html, body, .reveal div big {
+    font-size:1.3em
+}
+
+@media screen {
+    .reveal {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+
+
+@media screen and (max-width: 800px), screen and (max-height: 500px) {
+    .reveal .controls {
+        zoom: 0.5;
+    }
+    footer .holisticon-logo {
+        width: 100px;
+    }
+}

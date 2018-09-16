@@ -15,8 +15,6 @@ configure<DependencyManagementExtension> {
 }
 
 dependencies {
-  compile("org.apache.camel:camel-jackson")
-  compile("com.fasterxml.jackson.module:jackson-module-kotlin")
+  compile("org.apache.camel:camel-core")
+  compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
 }
-
-

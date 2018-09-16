@@ -1,0 +1,45 @@
+properties properties: [
+  [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10']],
+  [$class: 'GitLabConnectionProperty', gitLabConnection: 'Holi Gitlab'],
+  disableConcurrentBuilds()
+]
+
+@Library('holisticon-build-library')
+def nodeJS = new de.holisticon.ci.jenkins.NodeJS()
+
+timeout(30) {
+    node('docker') {
+        try {
+
+            stage('Checkout') {
+                checkout scm
+            }
+
+            stage('Build') {
+                nodeJS.nvm('install')
+                nodeJS.nvmRun('build')
+            }
+
+            stage('PDF') {
+                sh "chmod -R 777 dist/ && docker run --rm -v `pwd`:/pwd astefanutti/decktape /pwd/dist/index.html /pwd/dist/slides.pdf"
+                step([
+                    $class: 'ArtifactArchiver',
+                    artifacts: 'dist/**',
+                    fingerprint: true
+                ])
+                publishHTML(target: [
+                    reportDir:'dist/',
+                    reportFiles:'index.html',
+                    reportName:'Presentation',
+                    keepAll:true,
+                    alwaysLinkToLastBuild:true,
+                    allowMissing: false
+                ])
+            }
+
+        } catch (err) {
+            rocketSend 'Error during pipeline'
+            throw err
+        }
+    }
+}

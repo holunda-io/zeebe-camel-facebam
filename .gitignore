@@ -22,7 +22,3 @@ buildNumber.properties
 .gradle
 out/
 build/
-
-# local
-_demo/
-_presentation

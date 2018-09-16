@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: thumbnailer-worker
+
+facebam:
+  name: ${spring.application.name}
+  jobType: "thumbnail"
+  demo: ${ZEEBE_CAMEL_FACEBAM_HOME}/_demo
+  worker:
+    inbox: ${facebam.demo}/cloud/_application/thumbnailer
+  broker:
+    inbox: ${facebam.demo}/cloud/_application/orchestrator
+
+
+
+camel:
+  springboot:
+    mainRunController: true

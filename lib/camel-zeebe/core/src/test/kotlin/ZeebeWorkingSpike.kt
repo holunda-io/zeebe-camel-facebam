@@ -3,13 +3,13 @@ package io.zeebe.camel
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.zeebe.camel.api.*
 import io.zeebe.camel.api.command.CompleteJobCommand
-import io.zeebe.camel.api.command.RegisterJobWorkerCommand
 import io.zeebe.camel.api.command.DeployProcessCommand
+import io.zeebe.camel.api.command.RegisterJobWorkerCommand
 import io.zeebe.camel.api.command.StartProcessCommand
 import io.zeebe.camel.api.event.JobCreatedEvent
-import io.zeebe.camel.endpoint.WorkerRegisterEndpoint
 import io.zeebe.camel.endpoint.ProcessDeployEndpoint
 import io.zeebe.camel.endpoint.ProcessStartEndpoint
+import io.zeebe.camel.endpoint.WorkerRegisterEndpoint
 import io.zeebe.client.api.record.Record
 import io.zeebe.test.ZeebeTestRule
 import org.apache.camel.CamelContext
@@ -17,7 +17,6 @@ import org.apache.camel.LoggingLevel
 import org.apache.camel.Processor
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.impl.DefaultCamelContext
-import org.awaitility.Awaitility.await
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
@@ -114,15 +113,19 @@ class ZeebeWorkingSpike {
         registerJobWorkerGateway.send(RegisterJobWorkerCommand("doSomething", "dynamic", to = "file:/Users/jangalinski/msg"))
 
         // use proxy to send start command to direct:start
-        startProcessGateway.send(StartProcessCommand("process_dummy", payload = StartPayload(UUID.randomUUID().toString())))
-
+        startProcessGateway.send(
+          StartProcessCommand(
+            bpmnProcessId = "process_dummy",
+            payload = objectMapper.writeValueAsString(StartPayload(UUID.randomUUID().toString()))
+          )
+        )
 
         // the completion is done via route zeebe:jobworker->direct:foo->zeebe:complete
 
-        await().untilAsserted {
-            logger.info("records: {}", records)
-            records.find { it.metadata.intent == "COMPLETED" } != null
-        }
+//        await().untilAsserted {
+//            logger.info("records: {}", records)
+//            records.find { it.metadata.intent == "COMPLETED" } != null
+//        }
     }
 
 
