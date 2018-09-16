@@ -36,10 +36,16 @@ class WorkerRegisterEndpoint(context: ZeebeComponentContext) : ZeebeProducerOnly
         override fun configure() {
           val def = from(JobSubscribeEndpoint.endpoint(cmd.jobType, cmd.workerName))
             .id("register-worker-${cmd.getId()}")
+            .process {
+              val evt = it.`in`.getMandatoryBody(JobCreatedEvent::class.java)
+              it.`in`.setHeader(JobCreatedEvent.JOB_KEY, evt.key)
+            }
+
 
           if (cmd.toJson) {
             def.process(objectMapper.bodyToJson(JobCreatedEvent::class.java))
           }
+
           def.to(cmd.to)
         }
       })

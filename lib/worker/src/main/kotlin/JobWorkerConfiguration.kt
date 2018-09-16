@@ -2,6 +2,7 @@ package io.holunda.zeebe.facebam.lib.worker
 
 import io.zeebe.camel.api.RegisterJobWorkerGateway
 import io.zeebe.camel.api.command.RegisterJobWorkerCommand
+import io.zeebe.camel.api.event.JobCreatedEvent
 import io.zeebe.camel.api.zeebeRegisterJobWorkerGateway
 import io.zeebe.camel.lib.json.toJsonFile
 import org.apache.camel.CamelContext
@@ -36,7 +37,7 @@ fun RegisterJobWorkerGateway.sendRegistration(properties: WorkerProperties) = th
     jobType = properties.jobType!!,
     workerName = properties.name!!,
     to = "file:${properties.worker!!.inbox!!}" +
-      "?fileName=${properties.key}.job", // fixme require fields in properties
+      "?fileName=${properties.key}-\${header.${JobCreatedEvent.JOB_KEY}}.job",
     toJson = true
   )
 )

@@ -61,6 +61,7 @@ abstract class WorkerRouteBuilder(
 
     with(it.`in`) {
       setHeader(HEADER_JOB_EVENT, jobCreateEvent.jobEvent)
+      setHeader(JobCreatedEvent.JOB_KEY, jobCreateEvent.key)
       setHeader(FILE_PARENT, payload.image.directory)
       setHeader(FILE_NAME, payload.image.name)
     }
@@ -79,7 +80,7 @@ abstract class WorkerRouteBuilder(
       it.`in`.body = json
     }
 
-  fun brokerInbox() = "file:${properties.broker?.inbox!!}?fileName=${properties.key}.complete" // fixme: jobId
+  fun brokerInbox() = "file:${properties.broker?.inbox!!}?fileName=${properties.key}-\${header.${JobCreatedEvent.JOB_KEY}}.complete"
 
   private val simpleFileUrl = "file:\${header.CamelFileParent}?fileName=\${header.CamelFileName}&noop=true"
 

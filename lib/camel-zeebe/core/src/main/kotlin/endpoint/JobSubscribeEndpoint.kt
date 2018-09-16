@@ -4,7 +4,6 @@ import io.zeebe.camel.ZeebeComponent
 import io.zeebe.camel.ZeebeComponentContext
 import io.zeebe.camel.api.event.JobCreatedEvent
 import io.zeebe.camel.core.fn.JobEventCompressor
-import io.zeebe.camel.jobEventToJson
 import io.zeebe.client.api.events.JobEvent
 import io.zeebe.client.api.subscription.JobWorker
 import org.apache.camel.Consumer
@@ -13,7 +12,6 @@ import org.apache.camel.impl.DefaultConsumer
 import org.apache.camel.spi.UriEndpoint
 import org.apache.camel.spi.UriParam
 import org.slf4j.LoggerFactory
-import java.net.URLEncoder
 import java.time.Duration
 import java.time.temporal.ChronoUnit
 
@@ -67,8 +65,11 @@ class JobSubscribeEndpoint(context: ZeebeComponentContext) : ZeebeConsumerOnlyEn
         jobEvent = JobEventCompressor().encode(job),
         jobType = jobType,
         workerName = workerName,
-        payload = job.payload
+        payload = job.payload,
+        key = job.metadata.key
       )
+
+      exchange.`in`.headers[JobCreatedEvent.JOB_KEY] = cmd.key
       exchange.`in`.body = cmd
 
       logger.info("created job: {}", exchange.`in`.body)
