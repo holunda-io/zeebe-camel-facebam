@@ -18,7 +18,6 @@ class AddWatermarkRoute(objectMapper: ObjectMapper, properties: WorkerProperties
     readJobsFromWorkerInbox("handle-job-watermark")
       .copyEventDataToHeader()
       .log(LoggingLevel.INFO, "start working on file \${header.CamelFileName}")
-
       .loadWorkImage()
 
       .bean(WatermarkerProcessor::class.java)

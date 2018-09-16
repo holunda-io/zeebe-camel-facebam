@@ -3,6 +3,7 @@ package io.holunda.zeebe.facebam.lib.worker
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import io.zeebe.camel.api.ZippedString
 import io.zeebe.camel.api.event.JobCreatedEvent
 import io.zeebe.camel.lib.json.fromJsonFile
 import mu.KLogging
@@ -65,11 +66,18 @@ abstract class WorkerRouteBuilder(
       setHeader(FILE_PARENT, payload.image.directory)
       setHeader(FILE_NAME, payload.image.name)
     }
+
+
   })!!
 
   private object KeepJobEventHeader : AggregationStrategy {
     override fun aggregate(oldExchange: Exchange, newExchange: Exchange): Exchange = newExchange.apply {
-      this.`in`.setHeader(HEADER_JOB_EVENT, oldExchange.`in`.getHeader(HEADER_JOB_EVENT))
+      val oldHeaders = oldExchange.`in`.headers
+
+      with(this.`in`) {
+        setHeader(HEADER_JOB_EVENT, oldHeaders[HEADER_JOB_EVENT])
+        setHeader(JobCreatedEvent.JOB_KEY, oldHeaders[JobCreatedEvent.JOB_KEY])
+      }
     }
   }
 
@@ -82,7 +90,6 @@ abstract class WorkerRouteBuilder(
 
   fun brokerInbox() = "file:${properties.broker?.inbox!!}?fileName=${properties.key}-\${header.${JobCreatedEvent.JOB_KEY}}.complete"
 
-  private val simpleFileUrl = "file:\${header.CamelFileParent}?fileName=\${header.CamelFileName}&noop=true"
 
   fun RouteDefinition.loadWorkImage() = this
     .log(INFO, "trying to load workImage: $FILE_PARENT_NAME ")
