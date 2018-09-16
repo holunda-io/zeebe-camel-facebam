@@ -8,6 +8,7 @@ import io.zeebe.camel.lib.json.fromJsonFile
 import mu.KLogging
 import org.apache.camel.Exchange
 import org.apache.camel.Exchange.*
+import org.apache.camel.LoggingLevel.INFO
 import org.apache.camel.Processor
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.model.RouteDefinition
@@ -21,6 +22,7 @@ abstract class WorkerRouteBuilder(
 
   companion object : KLogging() {
     const val HEADER_JOB_EVENT = "jobEventId"
+    const val FILE_PARENT_NAME = "file:\${header.CamelFileParent}?fileName=\${header.CamelFileName}"
   }
 
   data class Image(val name: String, val directory: String) {
@@ -79,9 +81,13 @@ abstract class WorkerRouteBuilder(
 
   fun brokerInbox() = "file:${properties.broker?.inbox!!}?fileName=${properties.key}.complete" // fixme: jobId
 
+  private val simpleFileUrl = "file:\${header.CamelFileParent}?fileName=\${header.CamelFileName}&noop=true"
+
   fun RouteDefinition.loadWorkImage() = this
+    .log(INFO, "trying to load workImage: $FILE_PARENT_NAME ")
     .pollEnrich()
-    .simple("file:\${header.CamelFileParent}?noop=true")
-    .aggregationStrategy(KeepJobEventHeader)!!
+    .simple("$FILE_PARENT_NAME&noop=true")
+    .aggregationStrategy(KeepJobEventHeader)
+    .log(INFO, "loaded")!!
 
 }

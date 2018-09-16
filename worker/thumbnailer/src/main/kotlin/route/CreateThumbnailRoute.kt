@@ -7,6 +7,7 @@ import io.holunda.zeebe.facebam.worker.thumbnailer.processor.CreateThumbnailProc
 import io.zeebe.camel.api.ZippedString
 import io.zeebe.camel.api.command.CompleteJobCommand
 import org.apache.camel.Exchange
+import org.apache.camel.LoggingLevel
 import org.springframework.stereotype.Component
 
 
@@ -15,16 +16,19 @@ class CreateThumbnailRoute(objectMapper: ObjectMapper, properties: WorkerPropert
 
   override fun configure() {
     readJobsFromWorkerInbox("handle-job-${properties.jobType}")
-
       .copyEventDataToHeader()
+      .log(LoggingLevel.INFO, "start working on file \${header.CamelFileName}")
 
       .loadWorkImage()
 
       .bean(CreateThumbnailProcessor::class.java)
 
-      .toD("file:\${header.CamelFileParent}")
+      .toD(FILE_PARENT_NAME)
+      .log(LoggingLevel.INFO, "wrote thumbnail $FILE_PARENT_NAME")
+
       .process(createCompleteCommand())
       .process(bodyToJson(CompleteJobCommand::class))
+      .log(LoggingLevel.INFO, "send complete: \${body}")
       .to(brokerInbox())
   }
 

@@ -1,5 +1,6 @@
 package io.holunda.zeebe.facebam.worker.watermarker.processor
 
+import io.holunda.zeebe.facebam.lib.worker.modifyFileName
 import io.holunda.zeebe.facebam.worker.watermarker.WatermarkerApplication
 import mu.KLogging
 import org.apache.camel.Exchange
@@ -53,6 +54,9 @@ class WatermarkerProcessor : Processor {
   companion object : KLogging()
 
   override fun process(exchange: Exchange) {
+    val sourceFileName = exchange.getIn().headers[Exchange.FILE_NAME] as String
+    val watermarkedFile = modifyFileName(fileName = sourceFileName, suffix = "watermark")
+
     val fis = exchange.getIn().getMandatoryBody(InputStream::class.java)
     val typedImageStream = ImageIO.createImageInputStream(fis)
 
@@ -69,8 +73,10 @@ class WatermarkerProcessor : Processor {
       it
     }
 
+
+
     exchange.getIn().body = baos
-    exchange.getIn().headers[Exchange.FILE_NAME] = "watermarked_${exchange.getIn().headers[Exchange.FILE_NAME]}"
+    exchange.getIn().headers[Exchange.FILE_NAME] = watermarkedFile
   }
 
   override fun toString() = "WatermarkerProcessor()"
