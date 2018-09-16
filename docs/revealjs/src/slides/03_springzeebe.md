@@ -1,6 +1,6 @@
 
 
-![img](images/logo-springboot.png) <!-- .element: style="width:800px" -->
+![img](images/logo-springboot.png) <!-- .element: style="width:700px" -->
 
 > "Spring on steroids"
 
@@ -17,6 +17,7 @@ http://start.spring.io
 * annotation based
 * opinionated - convention over configuration
 * "starter" concept
+* executable jars
 
 --
 
@@ -44,9 +45,10 @@ public class MyApplication {
 
 # spring-zeebe
 
-* "Requested" by Bernd (Summer 2017)
+* "Requested" by Bernd 
+* First Release End 2017
 * can run broker and clients
-* yaml basedconfiguration 
+* yaml based configuration 
 * allows annotation based subscriptions
 * current version: `0.3.0-SNAPSHOT`
 
@@ -54,7 +56,7 @@ https://github.com/zeebe-io/spring-zeebe
 
 --
 
-# spring-zeebe-starter Example
+# Example: spring-zeebe-starter 
 
 ```java
 @SpringBootApplication

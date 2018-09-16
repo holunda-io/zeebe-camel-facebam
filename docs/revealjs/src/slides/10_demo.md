@@ -31,12 +31,19 @@ https://github.com/zeebe-io/zb-facebam
 
 ---
 
+# Now you tell me:
+# Was that cool or what? <!-- .element: class="fragment no-border" -->
+
+--
+
 # But wait ...
+# ... there is more <!-- .element: class="fragment no-border" -->
 
 --
 
-# ... there is more
+Everyone!<p> 
+Take a picture <p> <!-- .element: class="fragment no-border" -->
+and send it to <p>
 
---
+# holunda.io@gmail.com <!-- .element: class="fragment no-border" -->
 
-# holunda.io@gmail.com
