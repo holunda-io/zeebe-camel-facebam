@@ -6,9 +6,8 @@
 
 * Zeebe Broker does not know workers
 * Workers do not use Zeebe-API
-* Orchestrator is connected to Broker
-* Workers register dynamically via JSON
-* Jobs are published to endpoint of workers choice
+* Only Orchestrator is connected to Broker
+* Camel routes connect everything 
 
 --
 
@@ -20,10 +19,17 @@
 
 ---
 
+# But wait ...
+# ... ah, no - that was it!<!-- .element: class="fragment no-border" -->
+
+---
+
+
 # Thank you 
 
 ![simonz](images/thanks-simonz.png)  <!-- .element: style="height:200px" -->  ![simons](images/thanks-simons.png) <!-- .element: style="height:210px" -->
 
 <small>
-Simon Zambrovski &nbsp;       &nbsp;    Simon Sprünker
+Simon Zambrovski<br> 
+Simon Sprünker
 </small>  

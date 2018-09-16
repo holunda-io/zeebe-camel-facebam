@@ -1,13 +1,15 @@
 # Demo
-# Zeebe Facebam
+# Zeebe Camel Facebam
 
 ![img](images/process.png) <!-- .element: style="width:800px" -->
 
-Presented last year: <br/> 
-https://github.com/zeebe-io/zb-facebam
+
+https://github.com/holunda-io/zeebe-camel-facebam
 
 <!-- .slide: data-background="#EEE" -->
 
+>NOTES:
+* 2017 Zeebe zb-facebam - No idea why they named it that way, but I like the sound
 ---
 
 # Architecture
@@ -23,7 +25,7 @@ https://github.com/zeebe-io/zb-facebam
 ---
 
 > 
-> <br>&nbsp;    Let there be code<br>
+> <br>&nbsp;    Let there be code  &nbsp;<br>
 > &nbsp;         &nbsp;
 
 
@@ -43,7 +45,6 @@ https://github.com/zeebe-io/zb-facebam
 
 Everyone!<p> 
 Take a picture <p> <!-- .element: class="fragment no-border" -->
-and send it to <p>
+and mail it to:<p>
 
 # holunda.io@gmail.com <!-- .element: class="fragment no-border" -->
-
