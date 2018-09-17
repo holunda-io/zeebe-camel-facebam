@@ -22,3 +22,4 @@ buildNumber.properties
 .gradle
 out/
 build/
+index.html
