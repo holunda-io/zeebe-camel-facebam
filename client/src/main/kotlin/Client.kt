@@ -27,7 +27,11 @@ class ClientApplication {
   @Bean
   fun uploadImage(properties: ClientProperties, messageState: MessageState) = object : RouteBuilder() {
 
-    val gmailOptions = "userId=${properties.googleMail.userId}&clientId=${properties.googleMail.clientId}&clientSecret=${properties.googleMail.clientSecret}&accessToken=${properties.googleMail.accessToken}&refreshToken=${properties.googleMail.refreshToken}"
+    val gmailOptions = "userId=${properties.googleMail.userId}" +
+      "&clientId=${properties.googleMail.clientId}" +
+      "&clientSecret=${properties.googleMail.clientSecret}" +
+      "&accessToken=${properties.googleMail.accessToken}" +
+      "&refreshToken=${properties.googleMail.refreshToken}"
 
     override fun configure() {
 
