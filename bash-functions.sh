@@ -32,3 +32,36 @@ function zcf.refresh() {
   source bash-functions.sh
 }
 
+
+
+function zcf.gallery() {
+    imgDir=_demo/cloud/_application/_work
+    html=index.html
+
+    echo "<head>" > $html
+    echo '<META HTTP-EQUIV="refresh" CONTENT="6">' >> $html
+    echo "</head>" >> $html
+
+    echo "<body><h1>Camunda Con - Zeebe Camel Facebam</h1>" >> $html
+
+
+    for t in $imgDir/*-thumb.jpg
+    do
+	i=$(echo $t | sed -e "s/-thumb//")
+#	i=echo $t | sed -e "s/-thumb//"
+	echo "<a href=$i target=_blank><img src=$t /></a>" >> $html
+    done
+
+    echo "</body>" >> $html
+
+    echo "updated $html"
+}
+
+function zcf.gallery.loop() {
+    while true
+    do 
+	zcf.gallery
+	sleep 5
+    done
+}
+
