@@ -56,6 +56,32 @@ https://github.com/zeebe-io/spring-zeebe
 
 --
 
+# Example: zeebe client job worker
+
+````java
+public class JobWorkerCreator {
+  public static void main(String[] args) {
+    final ZeebeClientBuilder builder = ZeebeClient.newClientBuilder()....;
+
+    try (ZeebeClient client = builder.build()) {
+      final JobClient jobClient = client.topicClient(topic).jobClient();
+
+      System.out.println("Opening job worker.");
+
+      final JobWorker workerRegistration =
+          jobClient
+              .newWorker()
+              .jobType("sayHello")
+              .handler((jobClient,job) -> jobClient.newCompleteCommand(job)
+                    .payload("{\"hello\": \"world\"}")
+                    .send().join())
+              .open();
+    }
+  }
+````
+
+--
+
 # Example: spring-zeebe-starter 
 
 ```java
@@ -63,7 +89,7 @@ https://github.com/zeebe-io/spring-zeebe
 @EnableZeebeClient
 public class WorkerApplication {
 
-  public static void main(final String... args) {
+  public static  void main(final String... args) {
     SpringApplication.run(WorkerApplication.class, args);
   }
 

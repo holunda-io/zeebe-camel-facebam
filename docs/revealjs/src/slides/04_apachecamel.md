@@ -26,12 +26,10 @@ http://camel.apache.org/
 
 <small>Camel building blocks</small>
 
-# A Route
+# A Component
 
-* defines a data flow
-* starts with an **Endpoint**
-* can have (multiple) **Processor**s modifying data
-* ends with an **Endpoint**
+* provides a name-space (`zeebe://process/start`) 
+* is a factory for **Endpoint**s
 
 --
 
@@ -51,10 +49,12 @@ or a
 
 <small>Camel building blocks</small>
 
-# A Component
+# A Route
 
-* provides a name-space (`file://folder`) 
-* is a factory for **Endpoint**s
+* defines a data flow
+* starts with an **Endpoint**
+* can have (multiple) **Processor**s modifying data
+* ends with an **Endpoint**
 
 --
 
@@ -107,7 +107,7 @@ https://github.com/holunda-io/camel-zeebe
 * do not require worker to speak "zeebe"
 * support any worker language
 * support any messaging protocol
-
+* API and Camel Component
 
 --
 

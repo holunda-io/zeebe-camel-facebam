@@ -36,32 +36,28 @@ function zcf.refresh() {
 
 function zcf.gallery() {
     imgDir=_demo/cloud/_application/_work
-    html=index.html
 
-    echo "<head>" > $html
-    echo '<META HTTP-EQUIV="refresh" CONTENT="6">' >> $html
-    echo "</head>" >> $html
-
-    echo "<body><h1>Camunda Con - Zeebe Camel Facebam</h1>" >> $html
-
-
-    for t in $imgDir/*-thumb.jpg
+    echo '<html>' > index.html
+    echo '<head><link rel="stylesheet" type="text/css" href="docs/fancy/jquery.fancybox.min.css">' >> index.html
+    echo '<meta http-equiv="refresh" content="17">' >> index.html
+    echo '</head><body>' >> index.html
+    echo '<h1>Zeebe Camel Facebam</h1>' >> index.html
+    for thumb in $imgDir/*-thumb.jpg
     do
-	i=$(echo $t | sed -e "s/-thumb//")
-#	i=echo $t | sed -e "s/-thumb//"
-	echo "<a href=$i target=_blank><img src=$t /></a>" >> $html
+      img=$(echo $thumb | sed -e "s/-thumb//")
+      echo "\n<a href=\"$img\" data-fancybox><img src=\"$thumb\" /></a>" >> index.html
     done
 
-    echo "</body>" >> $html
-
-    echo "updated $html"
+    echo '<script src="docs/fancy/jquery.min.js"></script>' >> index.html
+	  echo '<script src="docs/fancy/jquery.fancybox.min.js"></script>' >> index.html
+	  echo '</body></html>' >> index.html
 }
 
 function zcf.gallery.loop() {
     while true
     do 
 	zcf.gallery
-	sleep 5
+	sleep 9
     done
 }
 

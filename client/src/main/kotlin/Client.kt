@@ -74,7 +74,8 @@ class ClientApplication {
           it.`in`.body = (it.`in`.mandatoryBody as MessagePartBody).data
         }
         .unmarshal().base64()
-        .to("""file:/tmp/""")
+        //.to("""file:/tmp/""")
+        .to("""file:${properties.cloud.inbox}""")
 
       from("""file:${properties.client.outbox}?include=.*\.png$""")
         .id("upload-image-to-cloud")
@@ -82,7 +83,7 @@ class ClientApplication {
         .to("""file:${properties.cloud.inbox}""")
 
       from("""file:${properties.client.outbox}?include=.*\.[png|jpg]$""")
-          .id("upload-image-to-cloud")
+          .id("upload-image-to-cloud1")
           .log(LoggingLevel.INFO, "uploading image")
           .to("""file:${properties.cloud.inbox}""")
     }

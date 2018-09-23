@@ -10,6 +10,16 @@ showing
 
 ## The process
 
-![process](./process.png)
+![process](images/process.png)
 
 Simple enough: for an image provided, add a watermark and create a thumbnail.
+
+![scribble](images/scribble.jpg)
+
+## Architecture
+
+![architecture](revealjs/src/images/zeebe-arch.png)
+
+## Dynamic view
+
+![dynamic](revealjs/src/images/zeebe-dynamic.png)

@@ -2,7 +2,7 @@
 
 ![img](images/logo-zeebe.png) <!-- .element: style="width:800px" -->
 
-> Workflow Engine for Microservices Orchestration
+> Next Generation Process Engine
 
 http://zeebe.io
 

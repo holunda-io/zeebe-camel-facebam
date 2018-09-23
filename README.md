@@ -4,7 +4,8 @@ Take the [zb-facebam](https://github.com/zeebe-io/zb-facebam) example to the nex
 
 Example setup using zeebe with spring boot and apache camel in "the cloud".
 
-Preparing the Demo on CamundaCon 2018.
+![gallery](docs/images/gallery.png)
+
 
 ## The Story
 
@@ -60,3 +61,4 @@ them as pure old fashioned system jobs with exchange through file-io.
 
 
 
+![gallery](docs/images/jan-at-demo.jpg)
