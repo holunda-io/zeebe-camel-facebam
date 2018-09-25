@@ -1,5 +1,3 @@
-# Zeebe Camel Facebam
-
 zeebe example based on https://github.com/zeebe-io/zb-facebam
 
 showing
